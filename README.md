@@ -25,7 +25,7 @@ pip install kydlib
 ```
 ## Usage
 
-Let's download a dataset from Tennessee Eastman Process benchmark to use as an example:
+Let's download a dataset from the Tennessee Eastman Process benchmark to serve as an example:
 
 ```python
 import pandas as pd
@@ -48,7 +48,7 @@ We are now ready to do the exploratory data analysis.
 s.scatterplot()
 ```
 
-<img src="./examples/assets/tep_scatter.png">
+![](https://raw.githubusercontent.com/afraniomelo/KydLIB/main/examples/assets/tep_scatter.png)
 
 #### Linear and nonlinear correlations
 
@@ -56,7 +56,7 @@ s.scatterplot()
 s.corr_coef()
 s.corr_coef_plot()
 ```
-<img src="./examples/assets/tep_correlation.png">
+![](https://raw.githubusercontent.com/afraniomelo/KydLIB/main/examples/assets/tep_correlation.png)
 
 #### Autocorrelation
 
@@ -64,7 +64,7 @@ s.corr_coef_plot()
 s.autocorrelation()
 s.autocorrelation_plot()
 ```
-<img src="./examples/assets/tep_autocorrelation.png">
+![](https://raw.githubusercontent.com/afraniomelo/KydLIB/main/examples/assets/tep_autocorrelation.png)
 
 #### Signal-to-noise ratio
 
@@ -72,7 +72,16 @@ s.autocorrelation_plot()
 s.signal_to_noise()
 s.signal_to_noise_plot()
 ```
-<img src="./examples/assets/tep_snr.png">
+![](https://raw.githubusercontent.com/afraniomelo/KydLIB/main/examples/assets/tep_snr.png)
+
+#### Multivariate gaussianity
+
+```python
+s.gaussianity()
+s.gaussianity_plot()
+```
+
+![](https://raw.githubusercontent.com/afraniomelo/KydLIB/main/examples/assets/tep_gaussianity.png)
 
 ## Citing
 
