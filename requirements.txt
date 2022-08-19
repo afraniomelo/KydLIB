@@ -1,0 +1,9 @@
+numpy>=1.22.3
+pandas>=1.4.3
+scipy>=1.6.2
+statsmodels>=0.13.2
+ennemi>=1.2.0
+matplotlib>=3.5.2
+seaborn>=0.11.2
+datashader>=0.14.2
+colorcet>=3.0.0
