@@ -7,7 +7,7 @@ There are methods for analyzing and visualizing:
 * linear and nonlinear pair correlations;
 * autocorrelations;
 * signal-to-noise ratios;
-* multivariate gaussianity.
+* multivariate Gaussianity.
 
 For details on methodologies and application examples, see:
 
@@ -74,7 +74,7 @@ s.signal_to_noise_plot()
 ```
 ![](https://raw.githubusercontent.com/afraniomelo/KydLIB/main/examples/assets/tep_snr.png)
 
-#### Multivariate gaussianity
+#### Multivariate Gaussianity
 
 ```python
 s.gaussianity()
