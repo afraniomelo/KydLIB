@@ -66,7 +66,7 @@ class Study():
             cols = data.columns
         
         if ticklabels is None:
-            ticklabels = range(1,self.m+1)
+            ticklabels = range(1,len(cols)+1)
         
         n_graph = len(ticklabels)
         
@@ -115,6 +115,8 @@ class Study():
             data = np.array(self.data)
         else:
             data = np.array(pd.DataFrame(self.data[cols]))
+            
+        m = data.shape[1]
                 
         self.vxy = pairwise_corr(data)
         np.fill_diagonal(self.vxy,1)
@@ -122,8 +124,8 @@ class Study():
         self.rho_xy = np.corrcoef(data,rowvar=False)
         self.rxy = self.vxy*(1-np.abs(self.rho_xy))
         
-        self.r = np.sqrt((self.rxy**2).sum()/(self.m**2-self.m))
-        self.rho = np.sqrt(((self.rho_xy**2).sum()-self.m)/(self.m**2-self.m))
+        self.r = np.sqrt((self.rxy**2).sum()/(m**2-m))
+        self.rho = np.sqrt(((self.rho_xy**2).sum()-m)/(m**2-m))
         
     def corr_coef_plot (self, ax = None, labels = None, title = True):
 
