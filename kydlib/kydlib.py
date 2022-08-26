@@ -242,7 +242,7 @@ class Study():
         y = self.b*x+self.a
         ax.plot(x,y,c='r',ls='--',linewidth=4)
         title = (f'a={self.a:.3f}, b={self.b:.3f}, ' 
-                 f'sig = {100*self.significance:.2f}%\nData gaussianity '
+                 f'sig = {100*self.significance:.2f}%\nData Gaussianity '
                  f'is {self.gaussian}.')
         ax.set_title(title)
         ax.grid('on')
