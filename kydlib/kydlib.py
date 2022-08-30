@@ -78,7 +78,7 @@ class Study():
                     ax[i,j].set_visible(False)
                 else:
                     cvs = ds.Canvas()
-                    agg = cvs.points(data, cols[i], cols[j])
+                    agg = cvs.points(data, cols[j], cols[i])
                     img = ds.tf.set_background(ds.tf.shade(
                                                ds.tf.spread(agg,px=5), 
                                                cmap=cmap), "white").to_pil()
