@@ -42,6 +42,14 @@ s = kydlib.Study(df)
 ```
 We are now ready to do the exploratory data analysis.
 
+#### Lineplots
+
+```python
+s.lineplot()
+```
+
+![](https://raw.githubusercontent.com/afraniomelo/KydLIB/main/examples/assets/tep_lines.png)
+
 #### Scatterplots
 
 ```python

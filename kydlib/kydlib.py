@@ -36,6 +36,46 @@ class Study():
         self.n = data.shape[0]
         self.m = data.shape[1]
         
+    def lineplot (self, ylabels = None, lw = 0.7, figsize = (12,10)):
+        """
+        Lineplots of individual variables.
+        
+        Parameters
+        ----------    
+        ylabels: sequence, optional
+            Values to use for ylabels. If None, use 1 to n_variables.
+        lw: float, optional
+            Linewidths.
+        figsize: a tuple (width, height) in inches
+        """
+        
+        data = pd.DataFrame(self.data)
+        m = data.shape[1]
+        
+        if ylabels is None:
+            ylabels = range(1,m+1)
+        
+        n_graph = len(ylabels)
+        
+        fig, ax = plt.subplots(m, 1, figsize=figsize)
+        
+        for i in range(n_graph):
+            ax[i].plot(data.iloc[:,i].index, 
+                       data.iloc[:,i], c='k', linewidth=lw)
+            ax[i].set_ylabel(ylabels[i], rotation=0, fontsize=14)
+            ax[i].set_yticks([])
+            ax[i].spines["top"].set_visible(False)
+            ax[i].spines["right"].set_visible(False)
+            ax[i].spines["left"].set_visible(False)
+            if i<(n_graph-1):
+                        ax[i].set_xticks([])
+                        ax[i].spines["bottom"].set_visible(False)
+                        ax[i].xaxis.set_ticks_position('none')
+            else:
+                for label in ax[i].get_xticklabels():
+                    label.set_rotation(45)
+                    label.set_ha('right')
+     
     def scatterplot (self, cols = None, ticklabels = None, 
                      figsize = (15,15), px = 5, cmap = cc.fire):
         
