@@ -11,7 +11,7 @@ There are methods for analyzing and visualizing:
 
 For details on methodologies and application examples, see:
 
-* Melo et al. (2022): Open benchmarks for assessment of process monitoring and fault diagnosis techniques: a review and critical analysis. [doi:10.1016/j.compchemeng.2022.107964](https://authors.elsevier.com/a/1feGKMK3kz%7ESx).
+* Melo et al. (2022): Open benchmarks for assessment of process monitoring and fault diagnosis techniques: A review and critical analysis. [doi:10.1016/j.compchemeng.2022.107964](https://doi.org/10.1016/j.compchemeng.2022.107964).
 * Laarne et al. (2021): ennemi: Non-linear correlation detection with mutual information. [doi:10.1016/j.softx.2021.100686](https://doi.org/10.1016/j.softx.2021.100686).
 * Zhang et al. (2016): A Novel Strategy of the Data Characteristics Test for Selecting a Process Monitoring Method Automatically. [doi:10.1021/acs.iecr.5b03525](https://doi.org/10.1021/acs.iecr.5b03525).
 * Feital and Pinto (2015): Use of variance spectra for in-line validation of process measurements in continuous processes. [doi:10.1002/cjce.22219](https://doi.org/10.1002/cjce.22219).
