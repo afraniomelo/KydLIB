@@ -36,7 +36,8 @@ class Study():
         self.n = data.shape[0]
         self.m = data.shape[1]
         
-    def lineplot (self, ylabels = None, lw = 0.7, figsize = (12,10)):
+    def lineplot (self, ylabels = None, lw = 0.7, figsize = (12,10),
+                  return_fig = False):
         """
         Lineplots of individual variables.
         
@@ -47,6 +48,8 @@ class Study():
         lw: float, optional
             Linewidths.
         figsize: a tuple (width, height) in inches
+        return_fig: boolean, optional
+            Whether to return the matplotlib.figure.Figure object.          
         """
         
         data = pd.DataFrame(self.data)
@@ -75,9 +78,13 @@ class Study():
                 for label in ax[i].get_xticklabels():
                     label.set_rotation(45)
                     label.set_ha('right')
+                    
+        if return_fig:
+            return fig
      
     def scatterplot (self, cols = None, ticklabels = None, 
-                     figsize = (15,15), px = 5, cmap = cc.fire):
+                     figsize = (15,15), px = 5, cmap = cc.fire,
+                     return_fig = False):
         
         """
         Scatterplot using the Datashader package.
@@ -96,6 +103,8 @@ class Study():
             Can be either a list of colors (specified either by name, 
             RGBA hexcode, or as a tuple of (red, green, blue) values.), 
             or a matplotlib colormap object. 
+        return_fig: boolean, optional
+            Whether to return the matplotlib.figure.Figure object.      
         """
 
         data = pd.DataFrame(self.data)
@@ -133,6 +142,9 @@ class Study():
                 ax[i,j].spines['right'].set_visible(False)
                 ax[i,j].spines['bottom'].set_visible(False)
                 ax[i,j].spines['left'].set_visible(False)
+                
+        if return_fig:
+            return fig
         
     def corr_coef (self, cols = None):
         
@@ -167,7 +179,8 @@ class Study():
         self.r = np.sqrt((self.rxy**2).sum()/(m**2-m))
         self.rho = np.sqrt(((self.rho_xy**2).sum()-m)/(m**2-m))
         
-    def corr_coef_plot (self, ax = None, labels = None, title = True):
+    def corr_coef_plot (self, ax = None, labels = None, title = True,
+                        return_fig = False):
 
         """
         Plot heatmaps of results computed by the `corr_coef` method.
@@ -182,6 +195,8 @@ class Study():
         title: boolean, optional
             If True, the Figure will have a suptitle containing the values of
             overall correlation coefficients.
+        return_fig: boolean, optional
+            Whether to return the matplotlib.figure.Figure object.      
         """        
         
         if ax is None:
@@ -218,6 +233,9 @@ class Study():
         #ax[2].set_xlabel('Variables')
         
         fig.tight_layout()
+        
+        if return_fig:
+            return fig
         
     def gaussianity (self):
 
@@ -262,7 +280,7 @@ class Study():
          self.Dt, self.Ft, self.gaussian) = (a, b, significance, 
                                              r2, Dt, Ft, gaussian)
 
-    def gaussianity_plot (self, ax = None):
+    def gaussianity_plot (self, ax = None, return_fig = False):
         
         """
         Plot results computed by the `gaussianity` method.
@@ -272,6 +290,8 @@ class Study():
         ax: matplotlib.axes._subplots.AxesSubplot, optional
             Axis on which the graph will be plotted.
             If None, the method will use the current axis.
+        return_fig: boolean, optional
+            Whether to return the matplotlib.figure.Figure object.      
         """
         
         if ax is None:
@@ -288,6 +308,9 @@ class Study():
         ax.grid('on')
         ax.set_xlabel('Dt')
         ax.set_ylabel('Ft')
+        
+        if return_fig:
+            return ax.get_figure()
         
     def autocorrelation (self, nlags = 50):
 
@@ -313,7 +336,8 @@ class Study():
             
     def autocorrelation_plot (self, plot_acf = False, plot_bar = True,
                               ax_acf = None, ax_bar = None, title_bar = True,
-                              critic_auto = 0.5):
+                              critic_auto = 0.5,
+                              return_fig = False):
 
         """
         Plot results computed by the `autocorrelation` method.
@@ -341,6 +365,8 @@ class Study():
             If True, the Figure will have a title describing what it means.
         critic_auto: float, optional
             Value to use as a critical threshold for the bar plot.
+        return_fig: boolean, optional
+            Whether to return the matplotlib.figure.Figure objects.
         """    
         
         data = pd.DataFrame(self.data)
@@ -351,12 +377,20 @@ class Study():
                 ax_acf.ravel()[i].plot(self.lags_x, self.lags_y[i],c='k')
                 ax_acf.ravel()[i].axhline(critic_auto,c='r',ls='--')
                 title = data.iloc[:,i].name
-                ax_acf.ravel()[i].set_title(title);        
+                ax_acf.ravel()[i].set_title(title);
+                fig_acf = ax_acf[0].get_figure()
+        
+        else:
+            fig_acf = None
             
         if plot_bar:
             
             if ax_bar is None:
-                fig, ax_bar = plt.subplots()
+                fig_bar, ax_bar = plt.subplots()
+                
+        else:
+            
+            fig_bar= None
 
             self.critic_auto_x = [np.searchsorted(-self.lags_y[i],
                                                   -critic_auto) 
@@ -378,6 +412,8 @@ class Study():
                 ax_bar.set_title(f'Number of lags necessary to achieve'
                                  f' {critic_auto} autocorrelation')
             
+        if return_fig:
+            return fig_acf, fig_bar
 
     def signal_to_noise (self):
 
@@ -403,7 +439,7 @@ class Study():
             self.var_signal = np.var(data,ddof=1,axis=0)    
             self.snr = self.var_signal/self.var_noise    
             
-    def signal_to_noise_plot (self, ax = None):
+    def signal_to_noise_plot (self, ax = None, return_fig = False):
 
         """
         Plot results computed by the `signal_to_noise` method.
@@ -413,6 +449,8 @@ class Study():
         ax: matplotlib.axes._subplots.AxesSubplot, optional
             Axis on which the graph will be plotted.
             If None, the method will use the current axis.
+        return_fig: boolean, optional
+            Whether to return the matplotlib.figure.Figure object. 
         """
         
         if ax is None: 
@@ -428,3 +466,6 @@ class Study():
         ax.set_xlim([0,self.m+1]);
         ax.set_xticks(np.arange(1,self.m+1));
         ax.legend();
+        
+        if return_fig:
+            return ax.get_figure()
