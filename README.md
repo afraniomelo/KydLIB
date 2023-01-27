@@ -18,10 +18,16 @@ For details on methodologies and application examples, see:
 
 ## Installation
 
-KydLIB can be installed with pip:
+### With pip
 
 ```
 pip install kydlib
+```
+
+### With conda
+
+```
+conda install -c conda-forge kydlib
 ```
 ## Usage
 
