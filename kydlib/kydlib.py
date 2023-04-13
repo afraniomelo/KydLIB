@@ -387,31 +387,31 @@ class Study():
             
             if ax_bar is None:
                 fig_bar, ax_bar = plt.subplots()
-                
-        else:
-            
-            fig_bar= None
 
             self.critic_auto_x = [np.searchsorted(-self.lags_y[i],
-                                                  -critic_auto) 
-                                  for i in range(len(self.lags_y))]
+                                                    -critic_auto) 
+                                    for i in range(len(self.lags_y))]
 
             ax_bar.bar(range(1,len(self.critic_auto_x)+1),
-                       np.array(self.critic_auto_x), color='k');
+                        np.array(self.critic_auto_x), color='k');
             ax_bar.set_xlabel('Variable')
             ax_bar.set_ylabel('Number of lags')
             ax_bar.set_xlim([0,self.m+1]);
             ax_bar.set_xticks(np.arange(1,self.m+1));
             ax_bar.xaxis.set_tick_params(labelsize=12)
             ax_bar.axhline(np.mean(self.critic_auto_x),
-                           ls='-',c='k',label='mean')
+                            ls='-',c='k',label='mean')
             ax_bar.axhline(np.median(self.critic_auto_x),ls='-.',
-                           c='k',label='median')
+                            c='k',label='median')
             ax_bar.legend();
             if title_bar:
                 ax_bar.set_title(f'Number of lags necessary to achieve'
-                                 f' {critic_auto} autocorrelation')
+                                    f' {critic_auto} autocorrelation')
+                
+        else:
             
+            fig_bar= None
+
         if return_fig:
             return fig_acf, fig_bar
 

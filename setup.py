@@ -24,7 +24,7 @@ setuptools.setup(
     name='kydlib',
     description='Routines for exploratory data analysis.',
     license="MIT",
-    version='0.3.0',
+    version='0.3.1',
     long_description=README,
     long_description_content_type='text/markdown',
     url='https://github.com/afraniomelo/kydlib',
